@@ -13,6 +13,14 @@
       --accent: #90caf9;
     }
 
+    [data-theme="light"] {
+      --primary: #007bff;
+      --bg: #ffffff;
+      --card: #f0f0f0;
+      --text: #222;
+      --accent: #007bff;
+    }
+
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
@@ -20,6 +28,20 @@
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .toggle-theme {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      z-index: 10000;
     }
 
     .loader-wrapper {
@@ -107,9 +129,20 @@
       max-width: 700px;
       text-align: left;
     }
+
+    [data-theme="light"] .info-block {
+      background-color: #ffffff;
+      border: 1px solid #ccc;
+    }
   </style>
 </head>
 <body>
+  
+   <button class="toggle-theme" onclick="toggleTheme()">Preklopi temo</button>
+  <div class="loader-wrapper" id="loader">
+    <div class="loader"></div>
+  </div>
+  
   <h1>Aljaž Gornik</h1>
     <main>
    <div class="section contact">
@@ -175,12 +208,21 @@ izzive in željan nadaljnjega izpopolnjevanja v hitro spreminjajočem se IT okol
     <p><strong>Srednja šola domžale</strong> – Tehnik Računalništva (2019-2023)</p>
   </div>
  </main> 
- <script>
+<script>
     window.addEventListener('load', () => {
       const loader = document.getElementById('loader');
       loader.style.opacity = '0';
       setTimeout(() => loader.style.display = 'none', 500);
     });
+
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      if (current === 'light') {
+        document.documentElement.removeAttribute('data-theme');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    }
   </script>
 
 </body>
