@@ -4,58 +4,78 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Aljaž Gornik – Življenjepis</title>
-  <style>
+ <style>
+    :root {
+      --primary: #00bcd4;
+      --bg: #121212;
+      --card: #1e1e1e;
+      --text: #e0e0e0;
+      --accent: #90caf9;
+    }
+
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
-      background: #f7f9fc;
-      color: #333;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
     }
+
     header {
-      background: #007bff;
+      background: var(--primary);
       color: white;
       padding: 2rem;
       text-align: center;
     }
+
     main {
       max-width: 900px;
       margin: auto;
       padding: 2rem;
-      background: white;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      margin-top: -40px;
+      background: var(--card);
       border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      margin-top: -40px;
     }
+
     h1, h2 {
-      border-bottom: 2px solid #eee;
-      padding-bottom: 5px;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
     }
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-    ul li {
-      margin: 0.5rem 0;
-    }
+
     .section {
       margin-bottom: 2rem;
     }
-    .skills i {
-      margin-right: 8px;
-      color: #007bff;
+
+    .skills i, .icon i {
+      margin-right: 10px;
+      color: var(--primary);
     }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    ul li {
+      padding: 0.3rem 0;
+    }
+
     .contact a {
-      color: #007bff;
+      color: var(--accent);
       text-decoration: none;
     }
+
     .contact a:hover {
       text-decoration: underline;
     }
-    .icon {
-      width: 22px;
-      display: inline-block;
-      text-align: center;
+
+    .info-block {
+      background-color: #2b2b2b;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
     }
   </style>
 </head>
