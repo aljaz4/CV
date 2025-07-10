@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Aljaž Gornik – Življenjepis</title>
- <style>
+<style>
     :root {
       --primary: #00bcd4;
       --bg: #121212;
@@ -22,6 +22,33 @@
       line-height: 1.6;
     }
 
+    .loader-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .loader {
+      border: 6px solid #2c2c2c;
+      border-top: 6px solid var(--primary);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
     header {
       background: var(--primary);
       color: white;
@@ -31,21 +58,22 @@
 
     main {
       max-width: 900px;
-      margin: auto;
+      margin: 3rem auto;
       padding: 2rem;
       background: var(--card);
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-      margin-top: -40px;
     }
 
     h1, h2 {
       color: var(--accent);
       margin-bottom: 0.5rem;
+      text-align: center;
     }
 
     .section {
       margin-bottom: 2rem;
+      text-align: center;
     }
 
     .skills i, .icon i {
@@ -75,12 +103,15 @@
       background-color: #2b2b2b;
       padding: 1rem;
       border-radius: 8px;
-      margin-bottom: 1rem;
+      margin: 0 auto 1rem;
+      max-width: 700px;
+      text-align: left;
     }
   </style>
 </head>
 <body>
   <h1>Aljaž Gornik</h1>
+    <main>
    <div class="section contact">
     <h2>Kontakt</h2>
   <p><strong><span class="icon"><i class="fas fa-envelope"></i>Email:</strong> aljaz.gornik08@gmail.com</p>
@@ -143,7 +174,14 @@ izzive in željan nadaljnjega izpopolnjevanja v hitro spreminjajočem se IT okol
     <p><strong>Univerza v mariboru</strong> – Fakulteta za organizacijske vede(DIPLOMIRANI ORGANIZATOR INFORMATIK UN) (2023–...)</p>
     <p><strong>Srednja šola domžale</strong> – Tehnik Računalništva (2019-2023)</p>
   </div>
-
+ </main> 
+ <script>
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('loader');
+      loader.style.opacity = '0';
+      setTimeout(() => loader.style.display = 'none', 500);
+    });
+  </script>
 
 </body>
 </html>
