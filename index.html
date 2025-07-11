@@ -41,31 +41,6 @@
       padding: 0 2rem;
     }
 
-    /* Language Toggle */
-    .toggle-language {
-      position: fixed;
-      top: 1.5rem;
-      right: 1.5rem;
-      background: var(--primary);
-      color: white;
-      border: none;
-      border-radius: 30px;
-      padding: 0.6rem 1.2rem;
-      cursor: pointer;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-weight: 500;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-    }
-
-    .toggle-language:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
-    }
-
     /* Header */
     header {
       background: linear-gradient(135deg, var(--primary), var(--accent-dark));
@@ -213,6 +188,24 @@
     }
 
     /* Skills */
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-category {
+      margin-bottom: 1.5rem;
+    }
+
+    .skill-category h3 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 0.5rem;
+    }
+
     .skills-list {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -229,6 +222,25 @@
     .skill-icon {
       color: var(--accent);
       font-size: 1.1rem;
+      min-width: 20px;
+    }
+
+    .skill-name {
+      flex-grow: 1;
+    }
+
+    .skill-level {
+      width: 80px;
+      height: 6px;
+      background: var(--bg);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .skill-level-bar {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 3px;
     }
 
     /* Experience & Education */
@@ -382,20 +394,13 @@
         grid-template-columns: 1fr;
       }
 
-      .toggle-language {
-        top: 1rem;
-        right: 1rem;
-        padding: 0.5rem 1rem;
-        font-size: 0.8rem;
+      .skills-container {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
-
-  <button class="toggle-language" onclick="toggleLanguage()">
-    <i class="fas fa-language"></i> English
-  </button>
 
   <header>
     <div class="header-content fade-in">
@@ -452,44 +457,132 @@
     </div>
 
     <section class="section fade-in delay-3">
-      <h2>Veščine</h2>
+      <h2>Kompetence</h2>
       <div class="card">
-        <div class="skills-list">
-          <div class="skill-item">
-            <div class="skill-icon"><i class="fas fa-code"></i></div>
-            <span>HTML, CSS, JavaScript</span>
+        <div class="skills-container">
+          <div class="skill-category">
+            <h3>Programski jeziki</h3>
+            <div class="skills-list">
+              <div class="skill-item">
+                <div class="skill-icon"><i class="fab fa-python"></i></div>
+                <div class="skill-name">Python</div>
+                <div class="skill-level"><div class="skill-level-bar" style="width: 65%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon"><i class="fas fa-copyright"></i></div>
+                <div class="skill-name">C++</div>
+                <div class="skill-level"><div class="skill-level-bar" style="width: 70%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon"><i class="fab fa-js"></i></div>
+                <div class="skill-name">JavaScript</div>
+                <div class="skill-level"><div class="skill-level-bar" style="width: 80%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon"><i class="fab fa-java"></i></div>
+                <div class="skill-name">Java</div>
+                <div class="skill-level"><div class="skill-level-bar" style="width: 85%"></div></div>
+              </div>
+            </div>
           </div>
-          <div class="skill-item">
-            <div class="skill-icon"><i class="fab fa-python"></i></div>
-            <span>Python</span>
+
+          <div class="skill-category">
+            <h3>Spletni razvoj</h3>
+            <div class="skills-list">
+              <div class="skill-item">
+                <div class="skill-icon"><i class="fab fa-html5"></i></div>
+                <div class="skill-name">HTML5</div>
+                <div class="skill-level"><div class="skill-level-bar" style="width: 95%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon"><i class="fab fa-css3-alt"></i></div>
+                <div class="skill-name">CSS3</div>
+                <div class="skill-level"><div class="skill-level-bar" style="width: 90%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon"><i class="fab fa-react"></i></div>
+                <div class="skill-name">React</div>
+                <div class="skill-level"><div class="skill-level-bar" style="width: 60%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon"><i class="fab fa-node-js"></i></div>
+                <div class="skill-name">Node.js</div>
+                <div class="skill-level"><div class="skill-level-bar" style="width: 55%"></div></div>
+              </div>
+            </div>
           </div>
-          <div class="skill-item">
-            <div class="skill-icon"><i class="fas fa-copyright"></i></div>
-            <span>C++</span>
+
+          <div class="skill-category">
+            <h3>Podatkovne baze</h3>
+            <div class="skills-list">
+              <div class="skill-item">
+                <div class="skill-icon"><i class="fas fa-database"></i></div>
+                <div class="skill-name">SQL</div>
+                <div class="skill-level"><div class="skill-level-bar" style="width: 75%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon"><i class="fas fa-database"></i></div>
+                <div class="skill-name">MongoDB</div>
+                <div class="skill-level"><div class="skill-level-bar" style="width: 70%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon"><i class="fas fa-server"></i></div>
+                <div class="skill-name">PostgreSQL</div>
+                <div class="skill-level"><div class="skill-level-bar" style="width: 70%"></div></div>
+              </div>
+            </div>
           </div>
-          <div class="skill-item">
-            <div class="skill-icon"><i class="fab fa-java"></i></div>
-            <span>Java</span>
+
+          <div class="skill-category">
+            <h3>Orodja in platforme</h3>
+            <div class="skills-list">
+              <div class="skill-item">
+                <div class="skill-icon"><i class="fab fa-git-alt"></i></div>
+                <div class="skill-name">Git</div>
+                <div class="skill-level"><div class="skill-level-bar" style="width: 90%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon"><i class="fab fa-docker"></i></div>
+                <div class="skill-name">Docker</div>
+                <div class="skill-level"><div class="skill-level-bar" style="width: 70%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon"><i class="fab fa-linux"></i></div>
+                <div class="skill-name">Linux</div>
+                <div class="skill-level"><div class="skill-level-bar" style="width: 85%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon"><i class="fab fa-aws"></i></div>
+                <div class="skill-name">AWS</div>
+                <div class="skill-level"><div class="skill-level-bar" style="width: 70%"></div></div>
+              </div>
+            </div>
           </div>
-          <div class="skill-item">
-            <div class="skill-icon"><i class="fas fa-database"></i></div>
-            <span>SQL, MongoDB</span>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon"><i class="fab fa-wordpress"></i></div>
-            <span>WordPress, Shopify</span>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon"><i class="fas fa-tools"></i></div>
-            <span>IT podpora</span>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon"><i class="fab fa-git-alt"></i></div>
-            <span>Git, GitHub</span>
-          </div>
-          <div class="skill-item">
-            <div class="skill-icon"><i class="fas fa-users"></i></div>
-            <span>Timsko delo</span>
+
+          <div class="skill-category">
+            <h3>ostale veščine</h3>
+            <div class="skills-list">
+              <div class="skill-item">
+                <div class="skill-icon"><i class="fas fa-users"></i></div>
+                <div class="skill-name">Timsko delo</div>
+                <div class="skill-level"><div class="skill-level-bar" style="width: 95%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon"><i class="fas fa-comments"></i></div>
+                <div class="skill-name">Komunikacija</div>
+                <div class="skill-level"><div class="skill-level-bar" style="width: 90%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon"><i class="fas fa-lightbulb"></i></div>
+                <div class="skill-name">Reševanje problemov</div>
+                <div class="skill-level"><div class="skill-level-bar" style="width: 100%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon"><i class="fas fa-book"></i></div>
+                <div class="skill-name">Učenje novih tehnologij</div>
+                <div class="skill-level"><div class="skill-level-bar" style="width: 100%"></div></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -533,6 +626,23 @@
               </div>
             </div>
           </div>
+          <div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-date">2022–2023</div>
+  <div class="timeline-content">
+    <h3 class="timeline-title">Geberit</h3>
+    <div class="timeline-description">
+      <ul>
+        <li>Pregledovanje in vodenje evidence zalog v skladišču</li>
+        <li>Kontrola stanja in količin materialov</li>
+        <li>Sodelovanje pri inventuri</li>
+        <li>Vnos podatkov v informacijski sistem</li>
+        <li>Komunikacija z drugimi oddelki glede stanja zalog</li>
+        <li>Reševanje težav v povezavi z zalogami</li>
+      </ul>
+    </div>
+  </div>
+</div>
         </div>
       </section>
 
@@ -576,128 +686,13 @@
         <a href="https://github.com/aljaz4" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
         <a href="mailto:aljaz.gornik08@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
         <a href="tel:+38651438588" class="social-link"><i class="fas fa-phone"></i></a>
+        <a href="https://www.linkedin.com/" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a>
       </div>
       <p class="copyright">© 2023 Aljaž Gornik. Vse pravice pridržane.</p>
     </div>
   </footer>
 
   <script>
-    // Language toggle functionality
-    function toggleLanguage() {
-      const lang = document.documentElement.lang;
-      const button = document.querySelector('.toggle-language');
-      
-      if (lang === 'sl') {
-        // Change to English
-        document.documentElement.lang = 'en';
-        button.innerHTML = '<i class="fas fa-language"></i> Slovenščina';
-        
-        // Update all text content
-        document.querySelector('title').textContent = 'Aljaž Gornik – Portfolio';
-        document.querySelector('header p').textContent = 'Computer Scientist • Technical Support • Programmer';
-        document.querySelector('.tagline').textContent = 'Solving problems, creating solutions';
-        document.querySelector('h2:first-of-type').textContent = 'Contact';
-        document.querySelector('h2:nth-of-type(2)').textContent = 'About Me';
-        document.querySelector('h2:nth-of-type(3)').textContent = 'Skills';
-        document.querySelector('h2:nth-of-type(4)').textContent = 'Work Experience';
-        document.querySelector('h2:nth-of-type(5)').textContent = 'Education';
-        
-        // Update about me text
-        document.querySelector('.about-text').innerHTML = `
-          <p>I am a motivated and technically skilled computer science student with extensive experience in information systems management and IT support.</p>
-          <p>I specialize in web application development and website maintenance, with strong problem-solving skills and a passion for learning new technologies.</p>
-          <p>In my free time, I develop personal projects and contribute to open-source initiatives, particularly in C++ and Python.</p>
-        `;
-        
-        // Update work experience
-        document.querySelector('.timeline-title:first-of-type').textContent = 'Ministry of Digital Transformation';
-        const ministryItems = document.querySelectorAll('.timeline-description:first-of-type li');
-        ministryItems[0].textContent = 'Development and maintenance of the SPOT portal (System for Supporting Course Completion)';
-        ministryItems[1].textContent = 'Implementation of new features in C++ and Python';
-        ministryItems[2].textContent = 'Database and SQL query optimization';
-        ministryItems[3].textContent = 'Collaboration on user interface redesign';
-        ministryItems[4].textContent = 'Troubleshooting user technical issues';
-        ministryItems[5].textContent = 'Documentation of processes and APIs';
-        
-        document.querySelector('.timeline-title:nth-of-type(2)').textContent = 'Slovenian Post Office';
-        const postItems = document.querySelectorAll('.timeline-description:nth-of-type(2) li');
-        postItems[0].textContent = 'Administrative tasks and record keeping';
-        postItems[1].textContent = 'Customer communication and issue resolution';
-        postItems[2].textContent = 'Computer hardware and network maintenance';
-        postItems[3].textContent = 'Support for new information system implementations';
-        
-        // Update education
-        document.querySelector('.timeline-title:nth-of-type(3)').textContent = 'University of Maribor';
-        document.querySelector('.timeline-description:nth-of-type(3)').innerHTML = `
-          Faculty of Organizational Sciences – Graduate Organizer of Computer Science<br>
-          Specialization: Information Systems Development<br>
-          Focus areas: C++, Python, databases, web development
-        `;
-        
-        document.querySelector('.timeline-title:nth-of-type(4)').textContent = 'Domžale High School';
-        document.querySelector('.timeline-description:nth-of-type(4)').innerHTML = `
-          Computer Technician<br>
-          Graduated with GPA 4.8<br>
-          School projects: Mobile app development, C++ basics
-        `;
-        
-        document.querySelector('.copyright').textContent = '© 2023 Aljaž Gornik. All rights reserved.';
-        
-      } else {
-        // Change back to Slovenian
-        document.documentElement.lang = 'sl';
-        button.innerHTML = '<i class="fas fa-language"></i> English';
-        
-        // Restore original Slovenian text
-        document.querySelector('title').textContent = 'Aljaž Gornik – Portfolio';
-        document.querySelector('header p').textContent = 'Informatik • Tehnična podpora • Programer';
-        document.querySelector('.tagline').textContent = 'Rešujem probleme, ustvarjam rešitve';
-        document.querySelector('h2:first-of-type').textContent = 'Kontakt';
-        document.querySelector('h2:nth-of-type(2)').textContent = 'O meni';
-        document.querySelector('h2:nth-of-type(3)').textContent = 'Veščine';
-        document.querySelector('h2:nth-of-type(4)').textContent = 'Delovne izkušnje';
-        document.querySelector('h2:nth-of-type(5)').textContent = 'Izobrazba';
-        
-        document.querySelector('.about-text').innerHTML = `
-          <p>Sem motiviran in tehnično podkovan študent informatike z bogatimi izkušnjami na področju upravljanja informacijskih sistemov in IT podpore.</p>
-          <p>Specializiran sem za razvoj spletnih aplikacij in vzdrževanje spletnih strani, z močnimi veščinami reševanja problemov in strastjo za učenje novih tehnologij.</p>
-          <p>V prostem času razvijam lastne projekte in sodelujem pri odprtokodnih iniciativah, posebej v jezikih C++ in Python.</p>
-        `;
-        
-        document.querySelector('.timeline-title:first-of-type').textContent = 'Ministrstvo za digitalno preobrazbo';
-        const ministryItems = document.querySelectorAll('.timeline-description:first-of-type li');
-        ministryItems[0].textContent = 'Razvoj in vzdrževanje portala SPOT (Sistem za podporo opravljanju tečajev)';
-        ministryItems[1].textContent = 'Implementacija novih funkcionalnosti v C++ in Python';
-        ministryItems[2].textContent = 'Optimizacija podatkovnih baz in poizvedb SQL';
-        ministryItems[3].textContent = 'Sodelovanje pri prenovi uporabniškega vmesnika';
-        ministryItems[4].textContent = 'Reševanje tehničnih težav uporabnikov';
-        ministryItems[5].textContent = 'Dokumentiranje procesov in API-jev';
-        
-        document.querySelector('.timeline-title:nth-of-type(2)').textContent = 'Pošta Slovenije';
-        const postItems = document.querySelectorAll('.timeline-description:nth-of-type(2) li');
-        postItems[0].textContent = 'Administrativna opravila in vodenje evidence';
-        postItems[1].textContent = 'Komunikacija s strankami in reševanje težav';
-        postItems[2].textContent = 'Vzdrževanje računalniške opreme in omrežja';
-        postItems[3].textContent = 'Podpora pri implementaciji novih informacijskih sistemov';
-        
-        document.querySelector('.timeline-title:nth-of-type(3)').textContent = 'Univerza v Mariboru';
-        document.querySelector('.timeline-description:nth-of-type(3)').innerHTML = `
-          FOV – DIPLOMIRANI ORGANIZATOR INFORMATIK UN<br>
-          Specializacija: Razvoj informacijskih sistemov<br>
-          Poudarki: C++, Python, podatkovne baze, spletni razvoj
-        `;
-        
-        document.querySelector('.timeline-title:nth-of-type(4)').textContent = 'Srednja šola Domžale';
-        document.querySelector('.timeline-description:nth-of-type(4)').innerHTML = `
-          Tehnik Računalništva<br>
-          Matura s povprečjem 4.8<br>
-          Šolski projekti: Razvoj mobilnih aplikacij, osnove C++
-        `;
-        
-        document.querySelector('.copyright').textContent = '© 2023 Aljaž Gornik. Vse pravice pridržane.';
-      }
-    }
-
     // Add intersection observer for scroll animations
     document.addEventListener('DOMContentLoaded', () => {
       const observer = new IntersectionObserver((entries) => {
