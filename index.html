@@ -6,414 +6,29 @@
   <title>Aljaž Gornik – Portfolio</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #00bcd4;
-      --primary-dark: #008ba3;
-      --bg: #0f0f0f;
-      --card: #181818;
-      --text: #e0e0e0;
-      --text-light: #a0a0a0;
-      --accent: #64ffda;
-      --accent-dark: #1de9b6;
-      --shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-      --transition: all 0.3s ease;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-      transition: var(--transition);
-      scroll-behavior: smooth;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    /* Header */
-    header {
-      background: linear-gradient(135deg, var(--primary), var(--accent-dark));
-      color: white;
-      padding: 6rem 0 4rem;
-      text-align: center;
-      clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
-      margin-bottom: 3rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
-      background-size: cover;
-      opacity: 0.3;
-    }
-
-    .header-content {
-      position: relative;
-      z-index: 1;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      letter-spacing: -0.5px;
-    }
-
-    header p {
-      font-size: 1.3rem;
-      opacity: 0.9;
-      margin-bottom: 1.5rem;
-    }
-
-    .tagline {
-      display: inline-block;
-      background: rgba(255, 255, 255, 0.2);
-      padding: 0.5rem 1rem;
-      border-radius: 30px;
-      font-size: 0.9rem;
-      margin-top: 1rem;
-    }
-
-    /* Main Content */
-    main {
-      padding-bottom: 4rem;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-bottom: 3rem;
-    }
-
-    .section {
-      margin-bottom: 3rem;
-    }
-
-    h2 {
-      color: var(--accent);
-      margin-bottom: 1.5rem;
-      font-size: 1.8rem;
-      font-weight: 600;
-      position: relative;
-      display: inline-block;
-    }
-
-    h2::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 50px;
-      height: 3px;
-      background: var(--accent);
-      border-radius: 3px;
-    }
-
-    /* Cards */
-    .card {
-      background: var(--card);
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-      height: 100%;
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-    }
-
-    .card h3 {
-      color: var(--accent);
-      margin-bottom: 1rem;
-      font-size: 1.3rem;
-    }
-
-    /* Contact */
-    .contact-info {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .contact-icon {
-      width: 40px;
-      height: 40px;
-      background: rgba(100, 255, 218, 0.1);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent);
-      font-size: 1.1rem;
-    }
-
-    .contact-link {
-      color: var(--text);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .contact-link:hover {
-      color: var(--accent);
-    }
-
-    /* Skills */
-    .skills-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .skill-category {
-      margin-bottom: 1.5rem;
-    }
-
-    .skill-category h3 {
-      color: var(--accent);
-      margin-bottom: 1rem;
-      font-size: 1.2rem;
-      border-bottom: 2px solid var(--primary);
-      padding-bottom: 0.5rem;
-    }
-
-    .skills-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-    }
-
-    .skill-item {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .skill-icon {
-      color: var(--accent);
-      font-size: 1.1rem;
-      min-width: 20px;
-    }
-
-    .skill-name {
-      flex-grow: 1;
-    }
-
-    .skill-level {
-      width: 80px;
-      height: 6px;
-      background: var(--bg);
-      border-radius: 3px;
-      overflow: hidden;
-    }
-
-    .skill-level-bar {
-      height: 100%;
-      background: var(--accent);
-      border-radius: 3px;
-    }
-
-    /* Experience & Education */
-    .timeline {
-      position: relative;
-      padding-left: 2rem;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 7px;
-      top: 0;
-      height: 100%;
-      width: 2px;
-      background: var(--primary);
-    }
-
-    .timeline-item {
-      position: relative;
-      padding-bottom: 2rem;
-    }
-
-    .timeline-item:last-child {
-      padding-bottom: 0;
-    }
-
-    .timeline-dot {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: var(--primary);
-      transform: translateX(-50%);
-    }
-
-    .timeline-date {
-      font-size: 0.9rem;
-      color: var(--text-light);
-      margin-bottom: 0.3rem;
-    }
-
-    .timeline-content {
-      margin-left: 1.5rem;
-    }
-
-    .timeline-title {
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      color: var(--accent);
-    }
-
-    .timeline-description {
-      color: var(--text-light);
-      font-size: 0.95rem;
-    }
-
-    .timeline-description ul {
-      list-style-type: none;
-      padding-left: 0;
-    }
-
-    .timeline-description li {
-      position: relative;
-      padding-left: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .timeline-description li::before {
-      content: '•';
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-    }
-
-    /* About */
-    .about-text {
-      color: var(--text-light);
-      line-height: 1.8;
-    }
-
-    .about-text p {
-      margin-bottom: 1rem;
-    }
-
-    /* Footer */
-    footer {
-      background: var(--card);
-      padding: 2rem 0;
-      text-align: center;
-      margin-top: 4rem;
-    }
-
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .social-link {
-      color: var(--text);
-      font-size: 1.5rem;
-      transition: var(--transition);
-    }
-
-    .social-link:hover {
-      color: var(--accent);
-      transform: translateY(-3px);
-    }
-
-    .copyright {
-      color: var(--text-light);
-      font-size: 0.9rem;
-    }
-
-    /* Animations */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .fade-in {
-      animation: fadeIn 0.8s ease-out forwards;
-    }
-
-    .delay-1 { animation-delay: 0.2s; }
-    .delay-2 { animation-delay: 0.4s; }
-    .delay-3 { animation-delay: 0.6s; }
-    .delay-4 { animation-delay: 0.8s; }
-    .delay-5 { animation-delay: 1s; }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      header {
-        padding: 4rem 0 3rem;
-        clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
-      }
-
-      header h1 {
-        font-size: 2.2rem;
-      }
-
-      header p {
-        font-size: 1.1rem;
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .skills-container {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
 </head>
 <body>
 
   <header>
     <div class="header-content fade-in">
-      <h1>Aljaž Gornik</h1>
-      <p>Informatik • Tehnična podpora • Programer</p>
-      <div class="tagline fade-in delay-1">Rešujem probleme, ustvarjam rešitve</div>
+      <h1 data-translate="title">Aljaž Gornik</h1>
+      <p data-translate="subtitle">Informatik • Tehnična podpora • Programer</p>
+      <div class="tagline fade-in delay-1" data-translate="tagline">Rešujem probleme, ustvarjam rešitve</div>
+      
+      <div class="language-switcher fade-in delay-2">
+        <button class="lang-btn active" data-lang="sl"><span class="flag-icon flag-icon-si"></span> SL</button>
+        <button class="lang-btn" data-lang="en"><span class="flag-icon flag-icon-gb"></span> EN</button>
+        <button class="lang-btn" data-lang="de"><span class="flag-icon flag-icon-de"></span> DE</button>
+      </div>
     </div>
   </header>
 
   <main class="container">
     <div class="grid">
       <section class="section fade-in delay-1">
-        <h2>Kontakt</h2>
+        <h2 data-translate="contact">Kontakt</h2>
         <div class="card">
           <div class="contact-info">
             <div class="contact-item">
@@ -438,56 +53,57 @@
               <div class="contact-icon">
                 <i class="fas fa-map-marker-alt"></i>
               </div>
-              <span class="contact-link">Domžale, Slovenija</span>
+              <span class="contact-link" data-translate="location">Ljubljana, Slovenija</span>
             </div>
           </div>
         </div>
       </section>
 
       <section class="section fade-in delay-2">
-        <h2>O meni</h2>
+        <h2 data-translate="about">O meni</h2>
         <div class="card">
           <div class="about-text">
-            <p>Sem motiviran in tehnično podkovan študent informatike z bogatimi izkušnjami na področju upravljanja informacijskih sistemov in IT podpore.</p>
-            <p>Specializiran sem za razvoj spletnih aplikacij in vzdrževanje spletnih strani, z močnimi veščinami reševanja problemov in strastjo za učenje novih tehnologij.</p>
-            <p>V prostem času razvijam lastne projekte in sodelujem pri odprtokodnih iniciativah, posebej v jezikih C++ in Python.</p>
+            <p data-translate="about1">Sem motiviran in tehnično podkovan študent informatike z bogatimi izkušnjami na področju upravljanja informacijskih sistemov in IT podpore.</p>
+            <p data-translate="about2">Specializiran sem za razvoj spletnih aplikacij in vzdrževanje spletnih strani, z močnimi veščinami reševanja problemov in strastjo za učenje novih tehnologij.</p>
+            <p data-translate="about3"> Odlikujejo me odlične analitične in komunikacijske veščine, kar mi omogoča učinkovito reševanje problemov in optimizacijo informacijskih sistemov. Vedno sem pripravljen na nove izzive in željan nadaljnjega izpopolnjevanja v hitro spreminjajočem se IT okolju.</p>
           </div>
         </div>
       </section>
     </div>
 
     <section class="section fade-in delay-3">
-      <h2>Kompetence</h2>
+      <h2 data-translate="skills">Kompetence</h2>
       <div class="card">
         <div class="skills-container">
           <div class="skill-category">
-            <h3>Programski jeziki</h3>
+            <h3 data-translate="prog_lang">Programski jeziki</h3>
             <div class="skills-list">
               <div class="skill-item">
                 <div class="skill-icon"><i class="fab fa-python"></i></div>
                 <div class="skill-name">Python</div>
-                <div class="skill-level"><div class="skill-level-bar" style="width: 65%"></div></div>
+                <div class="skill-level" data-width="65%"><div class="skill-level-bar"></div></div>
               </div>
               <div class="skill-item">
                 <div class="skill-icon"><i class="fas fa-copyright"></i></div>
                 <div class="skill-name">C++</div>
-                <div class="skill-level"><div class="skill-level-bar" style="width: 70%"></div></div>
+                <div class="skill-level" data-width="70%"><div class="skill-level-bar"></div></div>
               </div>
               <div class="skill-item">
                 <div class="skill-icon"><i class="fab fa-js"></i></div>
                 <div class="skill-name">JavaScript</div>
-                <div class="skill-level"><div class="skill-level-bar" style="width: 80%"></div></div>
+                <div class="skill-level" data-width="80%"><div class="skill-level-bar"></div></div>
               </div>
               <div class="skill-item">
                 <div class="skill-icon"><i class="fab fa-java"></i></div>
                 <div class="skill-name">Java</div>
-                <div class="skill-level"><div class="skill-level-bar" style="width: 85%"></div></div>
+                <div class="skill-level" data-width="85%"><div class="skill-level-bar"></div></div>
               </div>
             </div>
           </div>
 
+          
           <div class="skill-category">
-            <h3>Spletni razvoj</h3>
+            <h3 data-translate="skills">Spletni razvoj</h3>
             <div class="skills-list">
               <div class="skill-item">
                 <div class="skill-icon"><i class="fab fa-html5"></i></div>
@@ -513,7 +129,7 @@
           </div>
 
           <div class="skill-category">
-            <h3>Podatkovne baze</h3>
+            <h3 data-translate="skills">Podatkovne baze</h3>
             <div class="skills-list">
               <div class="skill-item">
                 <div class="skill-icon"><i class="fas fa-database"></i></div>
@@ -534,7 +150,7 @@
           </div>
 
           <div class="skill-category">
-            <h3>Orodja in platforme</h3>
+            <h3 data-translate="skills">Orodja in platforme</h3>
             <div class="skills-list">
               <div class="skill-item">
                 <div class="skill-icon"><i class="fab fa-git-alt"></i></div>
@@ -560,7 +176,7 @@
           </div>
 
           <div class="skill-category">
-            <h3>ostale veščine</h3>
+            <h3 data-translate="skills">ostale veščine</h3>
             <div class="skills-list">
               <div class="skill-item">
                 <div class="skill-icon"><i class="fas fa-users"></i></div>
@@ -586,98 +202,99 @@
           </div>
         </div>
       </div>
+        </div>
+      </div>
     </section>
 
     <div class="grid">
-      <section class="section fade-in delay-4">
-        <h2>Delovne izkušnje</h2>
-        <div class="card">
-          <div class="timeline">
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
-              <div class="timeline-date">2025–danes</div>
-              <div class="timeline-content">
-                <h3 class="timeline-title">Ministrstvo za digitalno preobrazbo</h3>
-                <div class="timeline-description">
-                  <ul>
-                    <li>Razvoj in vzdrževanje portala SPOT (Sistem za podporo opravljanju tečajev)</li>
-                    <li>Implementacija novih funkcionalnosti v C++ in Python</li>
-                    <li>Optimizacija podatkovnih baz in poizvedb SQL</li>
-                    <li>Sodelovanje pri prenovi uporabniškega vmesnika</li>
-                    <li>Reševanje tehničnih težav uporabnikov</li>
-                    <li>Dokumentiranje procesov in API-jev</li>
-                  </ul>
+        <section class="section fade-in delay-4">
+          <h2 data-translate="experience">Delovne izkušnje</h2>
+          <div class="card">
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2025–danes</div>
+                <div class="timeline-content">
+                  <h3 class="timeline-title" data-translate="job1_title">Ministrstvo za digitalno preobrazbo</h3>
+                  <div class="timeline-description">
+                    <ul>
+                      <li class="timeline-title" data-translate="job1_1">Razvoj in vzdrževanje portala SPOT </li>
+                      <li class="timeline-title" data-translate="job1_2">Sodelovanje pri prenovi uporabniškega vmesnika</li>
+                      <li class="timeline-title" data-translate="job1_3">Reševanje tehničnih težav uporabnikov</li>
+                      <li class="timeline-title" data-translate="job1_4">Analiza obstoječih e-postopkov na portalu SPOT – pregled elektronske oddaje vlog, strukture vsebin, doslednosti prikaza ter identifikacija možnosti za izboljšanje uporabniške izkušnje.</li>
+                      <li class="timeline-title" data-translate="job1_5">Testiranje umetne inteligence (AI) kot podpornega asistenta za portal eUprava – priprava uporabniških scenarijev, validacija odgovorov ter ocena primernosti integracije v javne e-storitve.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2023–danes</div>
+                <div class="timeline-content">
+                  <h3 class="timeline-title" data-translate="job2_title">Pošta Slovenije</h3>
+                  <div class="timeline-description">
+                    <ul>
+                      <li class="timeline-title" data-translate="job2_1">Administrativna opravila</li>
+                      <li class="timeline-title" data-translate="job2_2">Reševanje težav</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
+            <br>
             <div class="timeline-item">
-              <div class="timeline-dot"></div>
-              <div class="timeline-date">2023–danes</div>
-              <div class="timeline-content">
-                <h3 class="timeline-title">Pošta Slovenije</h3>
-                <div class="timeline-description">
-                  <ul>
-                    <li>Administrativna opravila in vodenje evidence</li>
-                    <li>Komunikacija s strankami in reševanje težav</li>
-                    <li>Vzdrževanje računalniške opreme in omrežja</li>
-                    <li>Podpora pri implementaciji novih informacijskih sistemov</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="timeline-item">
-  <div class="timeline-dot"></div>
-  <div class="timeline-date">2022–2023</div>
-  <div class="timeline-content">
-    <h3 class="timeline-title">Geberit</h3>
-    <div class="timeline-description">
-      <ul>
-        <li>Pregledovanje in vodenje evidence zalog v skladišču</li>
-        <li>Kontrola stanja in količin materialov</li>
-        <li>Sodelovanje pri inventuri</li>
-        <li>Vnos podatkov v informacijski sistem</li>
-        <li>Komunikacija z drugimi oddelki glede stanja zalog</li>
-        <li>Reševanje težav v povezavi z zalogami</li>
-      </ul>
+    <div class="timeline-dot"></div>
+    <div class="timeline-date">2022–2023</div>
+    <div class="timeline-content">
+      <h3 class="timeline-title" data-translate="job3_title">Geberit</h3>
+      <div class="timeline-description">
+        <ul>
+          <li class="timeline-title" data-translate="job3_1">Pregledovanje in vodenje evidence zalog v skladišču</li>
+          <li class="timeline-title" data-translate="job3_2">Kontrola stanja in količin materialov</li>
+          <li class="timeline-title" data-translate="job3_3">Sodelovanje pri inventuri</li>
+          <li class="timeline-title" data-translate="job3_4">Vnos podatkov v informacijski sistem</li>
+          <li class="timeline-title" data-translate="job3_5">Komunikacija z drugimi oddelki glede stanja zalog</li>
+          <li class="timeline-title" data-translate="job3_6">Reševanje težav v povezavi z zalogami</li>
+        </ul>
+      </div>
     </div>
   </div>
-</div>
-        </div>
-      </section>
-
-      <section class="section fade-in delay-5">
-        <h2>Izobrazba</h2>
-        <div class="card">
-          <div class="timeline">
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
-              <div class="timeline-date">2023–danes</div>
-              <div class="timeline-content">
-                <h3 class="timeline-title">Univerza v Mariboru</h3>
-                <p class="timeline-description">
-                  FOV – DIPLOMIRANI ORGANIZATOR INFORMATIK UN<br>
-                  Specializacija: Razvoj informacijskih sistemov<br>
-                  Poudarki: C++, Python, podatkovne baze, spletni razvoj
-                </p>
+          </div>
+        </section>
+  
+        <section class="section fade-in delay-5">
+          <h2 data-translate="education">Izobrazba</h2>
+          <div class="card">
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2023–danes</div>
+                <div class="timeline-content">
+                  <h3 class="timeline-title" data-translate="edu1_title">Univerza v Mariboru</h3>
+                  <p class="timeline-title" data-translate="edu1_desc">
+                    FOV – DIPLOMIRANI ORGANIZATOR INFORMATIK UN<br>
+                    Specializacija: Razvoj informacijskih sistemov<br>
+                    Poudarki: java, JavaScript, podatkovne baze, spletni razvoj
+                  </p>
+                </div>
               </div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
-              <div class="timeline-date">2019–2023</div>
-              <div class="timeline-content">
-                <h3 class="timeline-title">Srednja šola Domžale</h3>
-                <p class="timeline-description">
-                  Tehnik Računalništva<br>
-                  Matura s povprečjem 4.8<br>
-                  Šolski projekti: Razvoj mobilnih aplikacij, osnove C++
-                </p>
+              <br>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2019–2023</div>
+                <div class="timeline-content">
+                  <h3 class="timeline-title" data-translate="edu2_title">Srednja šola Domžale</h3>
+                  <p class="timeline-title" data-translate="edu2_desc">
+                    Tehnik Računalništva<br>
+                    Simulacija parkirišča (replika) – razvoj osnovnega modela delovanja parkirišča z uporabo logike za nadzor dostopa in upravljanje zasedenosti parkirnih mest. Projekt je bil izveden v sklopu predmeta programske logike in strukturiranega razmišljanja.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
   </main>
 
   <footer class="fade-in delay-5">
@@ -688,27 +305,15 @@
         <a href="tel:+38651438588" class="social-link"><i class="fas fa-phone"></i></a>
         <a href="https://www.linkedin.com/" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a>
       </div>
-      <p class="copyright">© 2023 Aljaž Gornik. Vse pravice pridržane.</p>
+      <p class="copyright">© <span id="current-year">2023</span> Aljaž Gornik. <span data-translate="rights">Vse pravice pridržane.</span></p>
     </div>
   </footer>
 
-  <script>
-    // Add intersection observer for scroll animations
-    document.addEventListener('DOMContentLoaded', () => {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('fade-in');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1 });
+  <button id="theme-toggle" class="theme-toggle">
+    <i class="fas fa-moon"></i>
+    <i class="fas fa-sun"></i>
+  </button>
 
-      document.querySelectorAll('.section, footer').forEach(section => {
-        observer.observe(section);
-      });
-    });
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
