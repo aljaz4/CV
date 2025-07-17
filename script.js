@@ -3,20 +3,25 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('current-year').textContent = new Date().getFullYear();
 
   // Večjezična podpora - prevodi
-  const translations = {
-    sl: {
-      title: "Aljaž Gornik",
-      subtitle: "Informatik • Tehnična podpora • Programer",
-      tagline: "Rešujem probleme, ustvarjam rešitve",
-      contact: "Kontakt",
-      about: "O meni",
-      skills: "Kompetence",
-      experience: "Delovne izkušnje",
-      education: "Izobrazba",
-      location: "Ljubljana, Slovenija",
-      rights: "Vse pravice pridržane.",
-      prog_lang: "Programski jeziki",
-      web_dev: "Spletni razvoj",
+ const translations = {
+  sl: {
+    title: "Aljaž Gornik",
+    subtitle: "Informatik • Tehnična podpora • Programer",
+    tagline: "Rešujem probleme, ustvarjam rešitve",
+    contact: "Kontakt",
+    about: "O meni",
+    skills: "Kompetence",
+    experience: "Delovne izkušnje",
+    education: "Izobrazba",
+    projects: "Projekti",
+    project1_title: "Simulacija parkirišča v C++",
+    project1_desc: "V sklopu šolskega projekta sem v programskem jeziku C++ izdelal repliko parkirišča, ki je simulirala delovanje parkirnega sistema. Projekt je vključeval upravljanje prostih mest, dodajanje in odstranjevanje vozil ter preverjanje zasedenosti, s poudarkom na uporabi podatkovnih struktur in osnov objektnega programiranja.",
+    project2_title: "Spletna trgovina z ročnimi urami",
+    project2_desc: "Zasnoval in vzpostavil sem spletno trgovino za prodajo ročnih ur s pomočjo platforme Webador. Projekt je obsegal oblikovanje celotne spletne strani, dodajanje izdelkov, razvrstitev po kategorijah ter vzpostavitev kontaktnega obrazca in osnovne košarice. Poseben poudarek je bil na preglednem dizajnu, uporabniški prijaznosti in privlačni predstavitvi izdelkov.",
+    location: "Ljubljana, Slovenija",
+    rights: "Vse pravice pridržane.",
+    prog_lang: "Programski jeziki",
+    web_dev: "Spletni razvoj",
     databases: "Podatkovne baze",
     tools: "Orodja in platforme",
     soft_skills: "Ostale veščine",
@@ -44,20 +49,24 @@ document.addEventListener('DOMContentLoaded', function() {
     edu2_title: "Srednja šola Domžale",
     edu2_desc: "Tehnik računalništva<br>Simulacija parkirišča (replika) – razvoj osnovnega modela delovanja parkirišča z uporabo logike za nadzor dostopa in upravljanje zasedenosti parkirnih mest. Projekt je bil izveden v sklopu predmeta programske logike in strukturiranega razmišljanja."
   },
-    en: {
-      title: "Aljaž Gornik",
-      subtitle: "Computer Scientist • Technical Support • Programmer",
-      tagline: "Solving problems, creating solutions",
-      contact: "Contact",
-      about: "About Me",
-      skills: "Skills",
-      experience: "Work Experience",
-      education: "Education",
-      projects: "Projects",
-      location: "Ljubljana, Slovenia",
-      rights: "All rights reserved.",
-      prog_lang: "Programming Languages",
-      web_dev: "Web Development",
+  en: {
+    title: "Aljaž Gornik",
+    subtitle: "Computer Scientist • Technical Support • Programmer",
+    tagline: "Solving problems, creating solutions",
+    contact: "Contact",
+    about: "About Me",
+    skills: "Skills",
+    experience: "Work Experience",
+    education: "Education",
+    projects: "Projects",
+    project1_title: "Parking Lot Simulation in C++",
+    project1_desc: "As part of a school project, I created a parking lot replica in C++ that simulated the operation of a parking system. The project included managing available spaces, adding and removing vehicles, and checking occupancy, with emphasis on using data structures and basics of object-oriented programming.",
+    project2_title: "Online Watch Store",
+    project2_desc: "I designed and established an online store for selling watches using the Webador platform. The project involved designing the entire website, adding products, categorizing them, and setting up a contact form and basic shopping cart. Special emphasis was placed on clear design, user-friendliness and attractive product presentation.",
+    location: "Ljubljana, Slovenia",
+    rights: "All rights reserved.",
+    prog_lang: "Programming Languages",
+    web_dev: "Web Development",
     databases: "Databases",
     tools: "Tools and Platforms",
     soft_skills: "Other Skills",
@@ -81,56 +90,56 @@ document.addEventListener('DOMContentLoaded', function() {
     job3_5: "Communication with other departments regarding inventory status",
     job3_6: "Solving inventory-related problems",
     edu1_title: "University of Maribor",
-    edu1_desc: "FOV - GRADUATE ORGANIZER OF COMPUTER SCIENCE<br>Specialization: Information Systems Development<br>Focus: Java, JavaScript, databases, web development",
+    edu1_desc: "FOV - GRADUATE ORGANIZATOR OF COMPUTER SCIENCE<br>Specialization: Information Systems Development<br>Focus: Java, JavaScript, databases, web development",
     edu2_title: "Domžale High School",
     edu2_desc: "Computer Technician<br>Parking lot simulation (replica) - development of a basic model of parking lot operation using logic for access control and parking space occupancy management. The project was carried out as part of the subject of program logic and structured thinking."
   },
-    de: {
-      title: "Aljaž Gornik",
-      subtitle: "Informatiker • Technischer Support • Programmierer",
-      tagline: "Probleme lösen, Lösungen schaffen",
-      contact: "Kontakt",
-      about: "Über mich",
-      skills: "Fähigkeiten",
-      experience: "Berufserfahrung",
-      education: "Bildung",
-      projects: "Projekte",
-      location: "Ljubljana, Slowenien",
-      rights: "Alle Rechte vorbehalten.",
-      prog_lang: "Programmiersprachen",
-      web_dev: "Webentwicklung",
-      databases: "Datenbanken",
-      tools: "Werkzeuge und Plattformen",
-      other_skills: "Andere Fähigkeiten",
-      about1: "Ich bin ein motivierter und technisch versierter Informatikstudent mit umfangreichen Erfahrungen im Bereich Informationssystemmanagement und IT-Support.",
-      about2: "Ich spezialisiere mich auf die Entwicklung von Webanwendungen und die Wartung von Websites, mit starken Problemlösungsfähigkeiten und einer Leidenschaft für das Lernen neuer Technologien.",
-      about3: "Ich zeichne mich durch analytische und kommunikative Fähigkeiten aus, die es mir ermöglichen, Probleme effektiv zu lösen und Informationssysteme zu optimieren. Ich bin immer bereit für neue Herausforderungen und bestrebt, mich in der sich schnell verändernden IT-Umgebung weiter zu verbessern.",
-      job1_title: "Ministerium für digitale Transformation",
-      job1_1: "Entwicklung und Wartung des SPOT-Portals",
-      job1_2: "Mitwirkung an der Neugestaltung der Benutzeroberfläche",
-      job1_3: "Behebung technischer Probleme für Benutzer",
-      job1_4: "Analyse bestehender E-Verfahren auf dem SPOT-Portal - Überprüfung der elektronischen Antragstellung, Inhaltsstruktur, Anzeigekonsistenz und Identifizierung von Möglichkeiten zur Verbesserung der Benutzererfahrung.",
-      job1_5: "Testen von künstlicher Intelligenz (KI) als Unterstützungsassistent für das eUprava-Portal - Vorbereitung von Benutzerszenarien, Validierung von Antworten und Bewertung der Eignung für die Integration in öffentliche E-Dienste.",
-      
-      job2_title: "Slowenische Post",
-      job2_1: "Verwaltungsaufgaben",
-      job2_2: "Problemlösung",
-      
-      job3_title: "Geberit",
-      job3_1: "Überprüfung und Führung von Lagerbestandsaufzeichnungen",
-      job3_2: "Kontrolle des Zustands und der Mengen der Materialien",
-      job3_3: "Mitwirkung bei der Inventur",
-      job3_4: "Dateneingabe in das Informationssystem",
-      job3_5: "Kommunikation mit anderen Abteilungen über den Lagerbestand",
-      job3_6: "Lösung von Lagerproblemen",
-      
-      edu1_title: "Universität Maribor",
-      edu1_desc: "FOV – DIPLOMIERTER INFORMATIKORGANISATOR<br>Spezialisierung: Entwicklung von Informationssystemen<br>Schwerpunkte: Java, JavaScript, Datenbanken, Webentwicklung",
-      
-      edu2_title: "Gymnasium Domžale",
-      edu2_desc: "Computertechniker<br>Parkplatzsimulation (Replik) - Entwicklung eines Grundmodells des Parkplatzbetriebs mit Logik für Zugangskontrolle und Parkplatzbelegungsmanagement. Das Projekt wurde im Rahmen des Fachs Programmlogik und strukturiertes Denken durchgeführt."
-    }
-  };
+  de: {
+    title: "Aljaž Gornik",
+    subtitle: "Informatiker • Technischer Support • Programmierer",
+    tagline: "Probleme lösen, Lösungen schaffen",
+    contact: "Kontakt",
+    about: "Über mich",
+    skills: "Fähigkeiten",
+    experience: "Berufserfahrung",
+    education: "Bildung",
+    projects: "Projekte",
+    project1_title: "Parkplatzsimulation in C++",
+    project1_desc: "Im Rahmen eines Schulprojekts habe ich eine Parkplatz-Replik in C++ erstellt, die den Betrieb eines Parksystems simuliert. Das Projekt umfasste die Verwaltung freier Plätze, das Hinzufügen und Entfernen von Fahrzeugen sowie die Überprüfung der Belegung, mit Schwerpunkt auf der Verwendung von Datenstrukturen und Grundlagen der objektorientierten Programmierung.",
+    project2_title: "Online-Uhrenshop",
+    project2_desc: "Ich habe einen Online-Shop für den Verkauf von Uhren mit der Webador-Plattform entworfen und eingerichtet. Das Projekt umfasste die Gestaltung der gesamten Website, das Hinzufügen von Produkten, die Kategorisierung und die Einrichtung eines Kontaktformulars und eines einfachen Warenkorbs. Besonderer Wert wurde auf ein klares Design, Benutzerfreundlichkeit und eine attraktive Produktpräsentation gelegt.",
+    location: "Ljubljana, Slowenien",
+    rights: "Alle Rechte vorbehalten.",
+    prog_lang: "Programmiersprachen",
+    web_dev: "Webentwicklung",
+    databases: "Datenbanken",
+    tools: "Werkzeuge und Plattformen",
+    other_skills: "Andere Fähigkeiten",
+    about1: "Ich bin ein motivierter und technisch versierter Informatikstudent mit umfangreichen Erfahrungen im Bereich Informationssystemmanagement und IT-Support.",
+    about2: "Ich spezialisiere mich auf die Entwicklung von Webanwendungen und die Wartung von Websites, mit starken Problemlösungsfähigkeiten und einer Leidenschaft für das Lernen neuer Technologien.",
+    about3: "Ich zeichne mich durch analytische und kommunikative Fähigkeiten aus, die es mir ermöglichen, Probleme effektiv zu lösen und Informationssysteme zu optimieren. Ich bin immer bereit für neue Herausforderungen und bestrebt, mich in der sich schnell verändernden IT-Umgebung weiter zu verbessern.",
+    job1_title: "Ministerium für digitale Transformation",
+    job1_1: "Entwicklung und Wartung des SPOT-Portals",
+    job1_2: "Mitwirkung an der Neugestaltung der Benutzeroberfläche",
+    job1_3: "Behebung technischer Probleme für Benutzer",
+    job1_4: "Analyse bestehender E-Verfahren auf dem SPOT-Portal - Überprüfung der elektronischen Antragstellung, Inhaltsstruktur, Anzeigekonsistenz und Identifizierung von Möglichkeiten zur Verbesserung der Benutzererfahrung.",
+    job1_5: "Testen von künstlicher Intelligenz (KI) als Unterstützungsassistent für das eUprava-Portal - Vorbereitung von Benutzerszenarien, Validierung von Antworten und Bewertung der Eignung für die Integration in öffentliche E-Dienste.",
+    job2_title: "Slowenische Post",
+    job2_1: "Verwaltungsaufgaben",
+    job2_2: "Problemlösung",
+    job3_title: "Geberit",
+    job3_1: "Überprüfung und Führung von Lagerbestandsaufzeichnungen",
+    job3_2: "Kontrolle des Zustands und der Mengen der Materialien",
+    job3_3: "Mitwirkung bei der Inventur",
+    job3_4: "Dateneingabe in das Informationssystem",
+    job3_5: "Kommunikation mit anderen Abteilungen über den Lagerbestand",
+    job3_6: "Lösung von Lagerproblemen",
+    edu1_title: "Universität Maribor",
+    edu1_desc: "FOV – DIPLOMIERTER INFORMATIKORGANISATOR<br>Spezialisierung: Entwicklung von Informationssystemen<br>Schwerpunkte: Java, JavaScript, Datenbanken, Webentwicklung",
+    edu2_title: "Gymnasium Domžale",
+    edu2_desc: "Computertechniker<br>Parkplatzsimulation (Replik) - Entwicklung eines Grundmodells des Parkplatzbetriebs mit Logik für Zugangskontrolle und Parkplatzbelegungsmanagement. Das Projekt wurde im Rahmen des Fachs Programmlogik und strukturiertes Denken durchgeführt."
+  }
+};
 
   // Funkcija za spreminjanje jezika
   function changeLanguage(lang) {
@@ -230,7 +239,50 @@ document.addEventListener('DOMContentLoaded', function() {
       document.documentElement.style.setProperty('--text-light', '#666666');
     }
   }
+// Dodajte v script.js
+document.addEventListener('DOMContentLoaded', function() {
+  // Smooth scroll za vse povezave
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  });
 
+  // Dinamično osvetljevanje aktivne sekcije
+  const sections = document.querySelectorAll('section');
+  window.addEventListener('scroll', function() {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      if (pageYOffset >= (sectionTop - 300)) {
+        current = section.getAttribute('id');
+      }
+    });
+    
+    document.querySelectorAll('nav a').forEach(a => {
+      a.classList.remove('active');
+      if (a.getAttribute('href') === `#${current}`) {
+        a.classList.add('active');
+      }
+    });
+  });
+
+  // Hover efekti za kartice
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    });
+  });
+});
   initTheme();
 
   // Animacija ob prikazu elementov
