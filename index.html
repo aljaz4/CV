@@ -3,333 +3,1515 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aljaž Gornik – Portfolio</title>
+  <title>Aljaž Gornik | Informatik & Web Developer</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet">
-  <link href="styles.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #000000;
+      --bg-secondary: #0a0a0a;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --accent-blue: #3b82f6;
+      --accent-purple: #8b5cf6;
+      --accent-cyan: #06b6d4;
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.6);
+      --text-muted: rgba(255, 255, 255, 0.4);
+      --border: rgba(255, 255, 255, 0.1);
+      --glow-blue: 0 0 40px rgba(59, 130, 246, 0.3);
+      --glow-purple: 0 0 40px rgba(139, 92, 246, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Ambient Background */
+    .ambient-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .ambient-bg::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(6, 182, 212, 0.1) 0%, transparent 40%);
+      animation: ambientMove 20s ease-in-out infinite;
+    }
+
+    @keyframes ambientMove {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      33% { transform: translate(30px, -30px) rotate(120deg); }
+      66% { transform: translate(-20px, 20px) rotate(240deg); }
+    }
+
+    /* Noise Texture */
+    .noise {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1.5rem 3rem;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    nav.scrolled {
+      padding: 1rem 3rem;
+      background: rgba(0, 0, 0, 0.95);
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .lang-switcher {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .lang-btn:hover {
+      border-color: var(--accent-blue);
+      color: var(--text-primary);
+    }
+
+    .lang-btn.active {
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+      border-color: transparent;
+      color: white;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 8rem 2rem 4rem;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      text-align: center;
+      max-width: 900px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 0.85rem;
+      color: var(--accent-cyan);
+      margin-bottom: 2rem;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--accent-cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent-cyan);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.03em;
+      animation: fadeInUp 0.8s ease 0.1s both;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-blue) 50%, var(--accent-purple) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      margin-bottom: 3rem;
+      font-weight: 400;
+      animation: fadeInUp 0.8s ease 0.2s both;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.8s ease 0.3s both;
+    }
+
+    .btn-primary {
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+      color: white;
+      text-decoration: none;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+    }
+
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--glow-blue);
+    }
+
+    .btn-secondary {
+      padding: 1rem 2rem;
+      background: transparent;
+      color: var(--text-primary);
+      text-decoration: none;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent-blue);
+      background: var(--bg-card);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Scroll Indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-10px); }
+    }
+
+    /* Section Styles */
+    section {
+      padding: 6rem 2rem;
+      position: relative;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-label {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 0.8rem;
+      color: var(--accent-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section-subtitle {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* About Section */
+    .about {
+      background: var(--bg-secondary);
+    }
+
+    .about-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-text {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    .about-text p {
+      margin-bottom: 1.5rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      border-color: var(--accent-blue);
+      transform: translateY(-5px);
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    /* Experience Section */
+    .experience {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .timeline {
+      position: relative;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent-blue), var(--accent-purple), transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 3rem;
+      padding-bottom: 3rem;
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: all 0.6s ease;
+    }
+
+    .timeline-item.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -5px;
+      top: 0.5rem;
+      width: 12px;
+      height: 12px;
+      background: var(--bg-primary);
+      border: 2px solid var(--accent-blue);
+      border-radius: 50%;
+      box-shadow: 0 0 20px var(--accent-blue);
+    }
+
+    .timeline-date {
+      font-size: 0.85rem;
+      color: var(--accent-cyan);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .timeline-content {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .timeline-content:hover {
+      border-color: rgba(59, 130, 246, 0.3);
+      box-shadow: 0 10px 40px rgba(59, 130, 246, 0.1);
+    }
+
+    .timeline-content h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .timeline-content .company {
+      color: var(--accent-blue);
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .timeline-content ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .timeline-content li {
+      position: relative;
+      padding-left: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .timeline-content li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--accent-blue);
+      font-weight: bold;
+    }
+
+    /* Skills Section */
+    .skills {
+      background: var(--bg-secondary);
+    }
+
+    .skills-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .skill-category {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .skill-category:hover {
+      border-color: rgba(139, 92, 246, 0.3);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(139, 92, 246, 0.1);
+    }
+
+    .skill-category h3 {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--text-primary);
+    }
+
+    .skill-category h3 i {
+      color: var(--accent-purple);
+    }
+
+    .skill-item {
+      margin-bottom: 1.2rem;
+    }
+
+    .skill-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .skill-name {
+      color: var(--text-secondary);
+    }
+
+    .skill-percent {
+      color: var(--accent-blue);
+      font-weight: 600;
+    }
+
+    .skill-bar {
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .skill-progress {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+      border-radius: 2px;
+      width: 0;
+      transition: width 1.5s ease;
+      position: relative;
+    }
+
+    .skill-progress::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100px); }
+      100% { transform: translateX(100px); }
+    }
+
+    /* Projects Section */
+    .projects-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(59, 130, 246, 0.3);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    .project-card:hover::before {
+      opacity: 1;
+    }
+
+    .project-image {
+      height: 200px;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: var(--accent-blue);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-image::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+      animation: rotate 10s linear infinite;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .project-content {
+      padding: 1.5rem;
+    }
+
+    .project-content h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+
+    .project-content p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tech-tag {
+      padding: 0.3rem 0.8rem;
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      color: var(--accent-blue);
+      font-weight: 500;
+    }
+
+    /* Contact Section */
+    .contact {
+      background: var(--bg-secondary);
+      text-align: center;
+    }
+
+    .contact-grid {
+      max-width: 800px;
+      margin: 3rem auto 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .contact-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      text-decoration: none;
+      color: var(--text-primary);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .contact-card:hover {
+      border-color: var(--accent-blue);
+      transform: translateY(-5px);
+      box-shadow: var(--glow-blue);
+    }
+
+    .contact-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: white;
+    }
+
+    .contact-info h4 {
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-info span {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    /* Footer */
+    footer {
+      padding: 3rem 2rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-text {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 4rem 1.5rem;
+      }
+    }
+
+    /* Reveal Animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 <body>
+  <div class="ambient-bg"></div>
+  <div class="noise"></div>
 
-  <header>
-    <div class="header-content fade-in">
-      <h1 data-translate="title">Aljaž Gornik</h1>
-      <p data-translate="subtitle">Informatik • Tehnična podpora • Programer</p>
-      <div class="tagline fade-in delay-1" data-translate="tagline">Rešujem probleme, ustvarjam rešitve</div>
-      
-      <div class="language-switcher fade-in delay-2">
-        <button class="lang-btn active" data-lang="sl"><span class="flag-icon flag-icon-si"></span> SL</button>
-        <button class="lang-btn" data-lang="en"><span class="flag-icon flag-icon-gb"></span> EN</button>
-        <button class="lang-btn" data-lang="de"><span class="flag-icon flag-icon-de"></span> DE</button>
+  <nav id="navbar">
+    <div class="nav-container">
+      <div class="logo">AG.</div>
+      <div class="nav-links">
+        <a href="#about" data-translate="nav_about">O meni</a>
+        <a href="#experience" data-translate="nav_exp">Izkušnje</a>
+        <a href="#skills" data-translate="nav_skills">Veščine</a>
+        <a href="#projects" data-translate="nav_projects">Projekti</a>
+        <a href="#contact" data-translate="nav_contact">Kontakt</a>
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="sl">SL</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="de">DE</button>
+        </div>
       </div>
     </div>
-  </header>
+  </nav>
 
-  <main class="container">
-    <div class="grid">
-      <section class="section fade-in delay-1">
-        <h2 data-translate="contact">Kontakt</h2>
-        <div class="card">
-          <div class="contact-info">
-            <div class="contact-item">
-              <div class="contact-icon">
-                <i class="fas fa-envelope"></i>
-              </div>
-              <a href="mailto:aljaz.gornik08@gmail.com" class="contact-link">aljaz.gornik08@gmail.com</a>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon">
-                <i class="fas fa-phone"></i>
-              </div>
-              <a href="tel:+38651438588" class="contact-link">+386 51 438 588</a>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon">
-                <i class="fab fa-github"></i>
-              </div>
-              <a href="https://github.com/aljaz4" target="_blank" class="contact-link">github.com/aljaz4</a>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon">
-                <i class="fas fa-map-marker-alt"></i>
-              </div>
-              <span class="contact-link" data-translate="location">Ljubljana, Slovenija</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="about" class="section fade-in delay-2">
-        <h2 data-translate="about">O meni</h2>
-        <div class="card">
-          <div class="about-text">
-            <p data-translate="about1">Sem motiviran in tehnično podkovan študent informatike z bogatimi izkušnjami na področju upravljanja informacijskih sistemov in IT podpore.</p>
-            <p data-translate="about2">Specializiran sem za razvoj spletnih aplikacij in vzdrževanje spletnih strani, z močnimi veščinami reševanja problemov in strastjo za učenje novih tehnologij.</p>
-            <p data-translate="about3"> Odlikujejo me odlične analitične in komunikacijske veščine, kar mi omogoča učinkovito reševanje problemov in optimizacijo informacijskih sistemov. Vedno sem pripravljen na nove izzive in željan nadaljnjega izpopolnjevanja v hitro spreminjajočem se IT okolju.</p>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <section id="skills" class="section fade-in delay-3">
-      <h2 data-translate="skills">Kompetence</h2>
-      <div class="card">
-        <div class="skills-container">
-          <div class="skill-category">
-            <h3 data-translate="prog_lang">Programski jeziki</h3>
-            <div class="skills-list">
-              <div class="skill-item">
-                <div class="skill-icon"><i class="fab fa-python"></i></div>
-                <div class="skill-name">Python</div>
-                <div class="skill-level" data-width="65%"><div class="skill-level-bar"></div></div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-icon"><i class="fas fa-copyright"></i></div>
-                <div class="skill-name">C++</div>
-                <div class="skill-level" data-width="70%"><div class="skill-level-bar"></div></div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-icon"><i class="fab fa-js"></i></div>
-                <div class="skill-name">JavaScript</div>
-                <div class="skill-level" data-width="80%"><div class="skill-level-bar"></div></div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-icon"><i class="fab fa-java"></i></div>
-                <div class="skill-name">Java</div>
-                <div class="skill-level" data-width="85%"><div class="skill-level-bar"></div></div>
-              </div>
-            </div>
-          </div>
-
-          
-          <div class="skill-category">
-            <h3 data-translate="skills">Spletni razvoj</h3>
-            <div class="skills-list">
-              <div class="skill-item">
-                <div class="skill-icon"><i class="fab fa-html5"></i></div>
-                <div class="skill-name">HTML5</div>
-                <div class="skill-level"><div class="skill-level-bar" style="width: 95%"></div></div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-icon"><i class="fab fa-css3-alt"></i></div>
-                <div class="skill-name">CSS3</div>
-                <div class="skill-level"><div class="skill-level-bar" style="width: 90%"></div></div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-icon"><i class="fab fa-react"></i></div>
-                <div class="skill-name">React</div>
-                <div class="skill-level"><div class="skill-level-bar" style="width: 60%"></div></div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-icon"><i class="fab fa-node-js"></i></div>
-                <div class="skill-name">Node.js</div>
-                <div class="skill-level"><div class="skill-level-bar" style="width: 55%"></div></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="skill-category">
-            <h3 data-translate="skills">Podatkovne baze</h3>
-            <div class="skills-list">
-              <div class="skill-item">
-                <div class="skill-icon"><i class="fas fa-database"></i></div>
-                <div class="skill-name">SQL</div>
-                <div class="skill-level"><div class="skill-level-bar" style="width: 75%"></div></div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-icon"><i class="fas fa-database"></i></div>
-                <div class="skill-name">MongoDB</div>
-                <div class="skill-level"><div class="skill-level-bar" style="width: 70%"></div></div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-icon"><i class="fas fa-server"></i></div>
-                <div class="skill-name">PostgreSQL</div>
-                <div class="skill-level"><div class="skill-level-bar" style="width: 70%"></div></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="skill-category">
-            <h3 data-translate="skills">Orodja in platforme</h3>
-            <div class="skills-list">
-              <div class="skill-item">
-                <div class="skill-icon"><i class="fab fa-git-alt"></i></div>
-                <div class="skill-name">Git</div>
-                <div class="skill-level"><div class="skill-level-bar" style="width: 90%"></div></div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-icon"><i class="fab fa-docker"></i></div>
-                <div class="skill-name">Docker</div>
-                <div class="skill-level"><div class="skill-level-bar" style="width: 70%"></div></div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-icon"><i class="fab fa-linux"></i></div>
-                <div class="skill-name">Linux</div>
-                <div class="skill-level"><div class="skill-level-bar" style="width: 85%"></div></div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-icon"><i class="fab fa-aws"></i></div>
-                <div class="skill-name">AWS</div>
-                <div class="skill-level"><div class="skill-level-bar" style="width: 70%"></div></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="skill-category">
-            <h3 data-translate="skills">ostale veščine</h3>
-            <div class="skills-list">
-              <div class="skill-item">
-                <div class="skill-icon"><i class="fas fa-users"></i></div>
-                <div class="skill-name" data-translate="skills1">Timsko delo</div>
-                <div class="skill-level"><div class="skill-level-bar" style="width: 95%"></div></div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-icon"><i class="fas fa-comments"></i></div>
-                <div class="skill-name"  data-translate="skills2">Komunikacija</div>
-                <div class="skill-level"><div class="skill-level-bar" style="width: 90%"></div></div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-icon"><i class="fas fa-lightbulb"></i></div>
-                <div class="skill-name"  data-translate="skills3">Reševanje problemov</div>
-                <div class="skill-level"><div class="skill-level-bar" style="width: 100%"></div></div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-icon"><i class="fas fa-book"></i></div>
-                <div class="skill-name"  data-translate="skills4">Učenje novih tehnologij</div>
-                <div class="skill-level"><div class="skill-level-bar" style="width: 100%"></div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="grid">
-        <section class="section fade-in delay-4">
-          <h2 data-translate="experience">Delovne izkušnje</h2>
-          <div class="card">
-            <div class="timeline">
-              <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-date">2025–danes</div>
-                <div class="timeline-content">
-                  <h3 class="timeline-title" data-translate="job1_title">Ministrstvo za digitalno preobrazbo</h3>
-                  <div class="timeline-description">
-                    <ul>
-                      <li class="timeline-title" data-translate="job1_1">Razvoj in vzdrževanje portala SPOT </li>
-                      <li class="timeline-title" data-translate="job1_2">Sodelovanje pri prenovi uporabniškega vmesnika</li>
-                      <li class="timeline-title" data-translate="job1_3">Reševanje tehničnih težav uporabnikov</li>
-                      <li class="timeline-title" data-translate="job1_4">Analiza obstoječih e-postopkov na portalu SPOT – pregled elektronske oddaje vlog, strukture vsebin, doslednosti prikaza ter identifikacija možnosti za izboljšanje uporabniške izkušnje.</li>
-                      <li class="timeline-title" data-translate="job1_5">Testiranje umetne inteligence (AI) kot podpornega asistenta za portal eUprava – priprava uporabniških scenarijev, validacija odgovorov ter ocena primernosti integracije v javne e-storitve.</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <br>
-              <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-date">2023–danes</div>
-                <div class="timeline-content">
-                  <h3 class="timeline-title" data-translate="job2_title">Pošta Slovenije</h3>
-                  <div class="timeline-description">
-                    <ul>
-                      <li class="timeline-title" data-translate="job2_1">Administrativna opravila</li>
-                      <li class="timeline-title" data-translate="job2_2">Reševanje težav</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <br>
-            <div class="timeline-item">
-    <div class="timeline-dot"></div>
-    <div class="timeline-date">2022–2023</div>
-    <div class="timeline-content">
-      <h3 class="timeline-title" data-translate="job3_title">Geberit</h3>
-      <div class="timeline-description">
-        <ul>
-          <li class="timeline-title" data-translate="job3_1">Pregledovanje in vodenje evidence zalog v skladišču</li>
-          <li class="timeline-title" data-translate="job3_2">Kontrola stanja in količin materialov</li>
-          <li class="timeline-title" data-translate="job3_3">Sodelovanje pri inventuri</li>
-          <li class="timeline-title" data-translate="job3_4">Vnos podatkov v informacijski sistem</li>
-          <li class="timeline-title" data-translate="job3_5">Komunikacija z drugimi oddelki glede stanja zalog</li>
-          <li class="timeline-title" data-translate="job3_6">Reševanje težav v povezavi z zalogami</li>
-        </ul>
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge" data-translate="hero_badge">Na voljo za priložnosti</div>
+      <h1><span data-translate="hero_title">Aljaž Gornik</span></h1>
+      <p class="hero-subtitle" data-translate="hero_subtitle">Informatik • Web Developer • Tehnična podpora</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn-primary" data-translate="btn_contact">Stopite v kontakt</a>
+        <a href="#projects" class="btn-secondary" data-translate="btn_work">Ogled projektov</a>
       </div>
     </div>
-  </div>
-          </div>
-        </section>
-  
-        <section class="section fade-in delay-5">
-          <h2 data-translate="education">Izobrazba</h2>
-          <div class="card">
-            <div class="timeline">
-              <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-date">2023–danes</div>
-                <div class="timeline-content">
-                  <h3 class="timeline-title" data-translate="edu1_title">Univerza v Mariboru</h3>
-                  <p class="timeline-title" data-translate="edu1_desc">
-                    FOV – DIPLOMIRANI ORGANIZATOR INFORMATIK UN<br>
-                    Specializacija: Razvoj informacijskih sistemov<br>
-                    Poudarki: java, JavaScript, podatkovne baze, spletni razvoj
-                  </p>
-                </div>
-              </div>
-              <br>
-              <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-date">2019–2023</div>
-                <div class="timeline-content">
-                  <h3 class="timeline-title" data-translate="edu2_title">Srednja šola Domžale</h3>
-                  <p class="timeline-title" data-translate="edu2_desc">
-                    Tehnik Računalništva<br>
-                    Simulacija parkirišča (replika) – razvoj osnovnega modela delovanja parkirišča z uporabo logike za nadzor dostopa in upravljanje zasedenosti parkirnih mest. Projekt je bil izveden v sklopu predmeta programske logike in strukturiranega razmišljanja.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section class="section">
-  <h2 data-translate="projects">Projekti</h2>
-  <div class="grid">
-    <div class="card project-card">
-      <h3 data-translate="project1_title">Simulacija parkirišča v C++</h3>
-      <p data-translate="project1_desc">V sklopu šolskega projekta sem v programskem jeziku C++ izdelal repliko parkirišča, ki je simulirala delovanje parkirnega sistema. Projekt je vključeval upravljanje prostih mest, dodajanje in odstranjevanje vozil ter preverjanje zasedenosti, s poudarkom na uporabi podatkovnih struktur in osnov objektnega programiranja.</p>
-      <div class="project-tech">C++ • OOP • Podatkovne strukture</div>
+    <div class="scroll-indicator">
+      <i class="fas fa-chevron-down"></i>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="section-header reveal">
+      <div class="section-label" data-translate="about_label">O meni</div>
+      <h2 class="section-title" data-translate="about_title">Tehnologija, ki rešuje probleme</h2>
+      <p class="section-subtitle" data-translate="about_subtitle">Združujem tehnično znanje z ustvarjalnim pristopom za razvoj digitalnih rešitev.</p>
     </div>
     
-    <div class="card project-card">
-      <h3 data-translate="project2_title">Spletna trgovina z ročnimi urami</h3>
-      <p data-translate="project2_desc">Zasnoval in vzpostavil sem spletno trgovino za prodajo ročnih ur s pomočjo platforme Webador. Projekt je obsegal oblikovanje celotne spletne strani, dodajanje izdelkov, razvrstitev po kategorijah ter vzpostavitev kontaktnega obrazca in osnovne košarice. Poseben poudarek je bil na preglednem dizajnu, uporabniški prijaznosti in privlačni predstavitvi izdelkov.</p>
-      <div class="project-tech">Webador • E-commerce • UI/UX</div>
-    </div>
-  </div>
-</section>
-
-  </main>
-
-  <footer class="fade-in delay-5">
-    <div class="container">
-      <div class="social-links">
-        <a href="https://github.com/aljaz4" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
-        <a href="mailto:aljaz.gornik08@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
-        <a href="tel:+38651438588" class="social-link"><i class="fas fa-phone"></i></a>
-        <a href="https://www.linkedin.com/" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p data-translate="about_p1">Sem motiviran študent informatike z strastjo do razvoja spletnih aplikacij in informacijskih sistemov. Moja pot je zaznamovana z nenehnim učenjem in praktičnimi izkušnjami pri različnih projektih.</p>
+        <p data-translate="about_p2">Specializiram se za full-stack razvoj, od frontend oblikovanja do backend logike. Pri svojem delu dajem poudarek na čisto kodo, uporabniško izkušnjo in sodobne tehnologije.</p>
+        <p data-translate="about_p3">Trenutno aktivno iščem priložnosti za nadaljnji razvoj v dinamičnem IT okolju, kjer lahko prispevam k inovativnim projektom.</p>
       </div>
-      <p class="copyright">© <span id="current-year">2023</span> Aljaž Gornik. <span data-translate="rights">Vse pravice pridržane.</span></p>
+      
+      <div class="stats-grid reveal">
+        <div class="stat-card">
+          <span class="stat-number">3+</span>
+          <span class="stat-label" data-translate="stat_years">Leta izkušenj</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">10+</span>
+          <span class="stat-label" data-translate="stat_projects">Projektov</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">4</span>
+          <span class="stat-label" data-translate="stat_companies">Podjetij</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">∞</span>
+          <span class="stat-label" data-translate="stat_passion">Strast do učenja</span>
+        </div>
+      </div>
     </div>
+  </section>
+
+  <section id="experience" class="experience">
+    <div class="section-header reveal">
+      <div class="section-label" data-translate="exp_label">Kariera</div>
+      <h2 class="section-title" data-translate="exp_title">Delovne izkušnje</h2>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2024 – Present</div>
+        <div class="timeline-content">
+          <h3 data-translate="job0_role">Web Developer & Designer</h3>
+          <span class="company">Allflex</span>
+          <ul>
+            <li data-translate="job0_1">Razvoj in vzpostavitev spletne trgovine za prodajo industrijske opreme</li>
+            <li data-translate="job0_2">Oblikovanje in razvoj spletne strani allflex.si z modernim dizajnom</li>
+            <li data-translate="job0_3">UX/UI optimizacija in mobilna prilagodljivost</li>
+            <li data-translate="job0_4">SEO optimizacija in digitalna strategija</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2025 – Present</div>
+        <div class="timeline-content">
+          <h3 data-translate="job1_role">IT Support & Developer</h3>
+          <span class="company" data-translate="job1_company">Ministrstvo za digitalno preobrazbo</span>
+          <ul>
+            <li data-translate="job1_1">Razvoj in vzdrževanje portala SPOT</li>
+            <li data-translate="job1_2">Sodelovanje pri prenovi uporabniškega vmesnika</li>
+            <li data-translate="job1_3">Testiranje AI asistenta za portal eUprava</li>
+            <li data-translate="job1_4">Analiza in optimizacija e-postopkov</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2023 – Present</div>
+        <div class="timeline-content">
+          <h3 data-translate="job2_role">Administrative IT Support</h3>
+          <span class="company" data-translate="job2_company">Pošta Slovenije</span>
+          <ul>
+            <li data-translate="job2_1">Administrativna opravila in podpora</li>
+            <li data-translate="job2_2">Reševanje tehničnih težav</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2022 – 2023</div>
+        <div class="timeline-content">
+          <h3 data-translate="job3_role">Warehouse IT Administrator</h3>
+          <span class="company">Geberit</span>
+          <ul>
+            <li data-translate="job3_1">Vodenje evidence zalog in informacijski sistem</li>
+            <li data-translate="job3_2">Optimizacija skladiščnih procesov</li>
+            <li data-translate="job3_3">Sodelovanje pri digitalizaciji inventure</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="skills">
+    <div class="section-header reveal">
+      <div class="section-label" data-translate="skills_label">Expertiza</div>
+      <h2 class="section-title" data-translate="skills_title">Tehnične veščine</h2>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-category reveal">
+        <h3><i class="fas fa-code"></i> <span data-translate="cat_prog">Programski jeziki</span></h3>
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">JavaScript / TypeScript</span>
+            <span class="skill-percent">85%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="85"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">Java</span>
+            <span class="skill-percent">80%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="80"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">Python</span>
+            <span class="skill-percent">70%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="70"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">C++</span>
+            <span class="skill-percent">65%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="65"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-category reveal">
+        <h3><i class="fas fa-globe"></i> <span data-translate="cat_web">Web Tehnologije</span></h3>
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">HTML5 / CSS3</span>
+            <span class="skill-percent">95%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="95"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">React / Next.js</span>
+            <span class="skill-percent">70%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="70"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">Node.js</span>
+            <span class="skill-percent">60%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="60"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-category reveal">
+        <h3><i class="fas fa-database"></i> <span data-translate="cat_db">Podatkovne baze</span></h3>
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">SQL / PostgreSQL</span>
+            <span class="skill-percent">80%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="80"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">MongoDB</span>
+            <span class="skill-percent">70%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="70"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-category reveal">
+        <h3><i class="fas fa-tools"></i> <span data-translate="cat_tools">Orodja & DevOps</span></h3>
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">Git / GitHub</span>
+            <span class="skill-percent">90%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="90"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">Docker</span>
+            <span class="skill-percent">75%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="75"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">Linux / AWS</span>
+            <span class="skill-percent">80%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="80"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="projects">
+    <div class="section-header reveal">
+      <div class="section-label" data-translate="proj_label">Portfolio</div>
+      <h2 class="section-title" data-translate="proj_title">Izbrani projekti</h2>
+    </div>
+
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <div class="project-image">
+          <i class="fas fa-shopping-bag"></i>
+        </div>
+        <div class="project-content">
+          <h3 data-translate="proj0_title">Allflex.si E-commerce</h3>
+          <p data-translate="proj0_desc">Celovita spletna trgovina za industrijsko opremo z modernim dizajnom, optimizirano za mobilne naprave in SEO.</p>
+          <div class="project-tech">
+            <span class="tech-tag">HTML/CSS</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">E-commerce</span>
+            <span class="tech-tag">SEO</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-image">
+          <i class="fas fa-parking"></i>
+        </div>
+        <div class="project-content">
+          <h3 data-translate="proj1_title">Parking Simulation C++</h3>
+          <p data-translate="proj1_desc">Simulacija parkirišča z uporabo objektnega programiranja in naprednih podatkovnih struktur.</p>
+          <div class="project-tech">
+            <span class="tech-tag">C++</span>
+            <span class="tech-tag">OOP</span>
+            <span class="tech-tag">Data Structures</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-image">
+          <i class="fas fa-watch"></i>
+        </div>
+        <div class="project-content">
+          <h3 data-translate="proj2_title">Watch E-commerce</h3>
+          <p data-translate="proj2_desc">Spletna trgovina za ročne ure z emphasisom na UX dizajn in konverzijo.</p>
+          <div class="project-tech">
+            <span class="tech-tag">Webador</span>
+            <span class="tech-tag">UI/UX</span>
+            <span class="tech-tag">E-commerce</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="section-header reveal">
+      <div class="section-label" data-translate="contact_label">Kontakt</div>
+      <h2 class="section-title" data-translate="contact_title">Stopite v stik</h2>
+      <p class="section-subtitle" data-translate="contact_subtitle">Odprt sem za nove priložnosti in sodelovanja.</p>
+    </div>
+
+    <div class="contact-grid reveal">
+      <a href="mailto:aljaz.gornik08@gmail.com" class="contact-card">
+        <div class="contact-icon">
+          <i class="fas fa-envelope"></i>
+        </div>
+        <div class="contact-info">
+          <h4>Email</h4>
+          <span>aljaz.gornik08@gmail.com</span>
+        </div>
+      </a>
+
+      <a href="tel:+38651438588" class="contact-card">
+        <div class="contact-icon">
+          <i class="fas fa-phone"></i>
+        </div>
+        <div class="contact-info">
+          <h4 data-translate="contact_phone">Telefon</h4>
+          <span>+386 51 438 588</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/aljaz4" target="_blank" class="contact-card">
+        <div class="contact-icon">
+          <i class="fab fa-github"></i>
+        </div>
+        <div class="contact-info">
+          <h4>GitHub</h4>
+          <span>@aljaz4</span>
+        </div>
+      </a>
+
+      <a href="#" class="contact-card">
+        <div class="contact-icon">
+          <i class="fas fa-map-marker-alt"></i>
+        </div>
+        <div class="contact-info">
+          <h4 data-translate="contact_loc">Lokacija</h4>
+          <span>Ljubljana, Slovenija</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p class="footer-text">© 2024 Aljaž Gornik. <span data-translate="footer_rights">Vse pravice pridržane.</span></p>
   </footer>
 
-  <button id="theme-toggle" class="theme-toggle">
-    <i class="fas fa-moon"></i>
-    <i class="fas fa-sun"></i>
-  </button>
+  <script>
+    // Translations
+    const translations = {
+      sl: {
+        nav_about: "O meni",
+        nav_exp: "Izkušnje",
+        nav_skills: "Veščine",
+        nav_projects: "Projekti",
+        nav_contact: "Kontakt",
+        hero_badge: "Na voljo za priložnosti",
+        hero_title: "Aljaž Gornik",
+        hero_subtitle: "Informatik • Web Developer • Tehnična podpora",
+        btn_contact: "Stopite v kontakt",
+        btn_work: "Ogled projektov",
+        about_label: "O meni",
+        about_title: "Tehnologija, ki rešuje probleme",
+        about_subtitle: "Združujem tehnično znanje z ustvarjalnim pristopom za razvoj digitalnih rešitev.",
+        about_p1: "Sem motiviran študent informatike z strastjo do razvoja spletnih aplikacij in informacijskih sistemov. Moja pot je zaznamovana z nenehnim učenjem in praktičnimi izkušnjami pri različnih projektih.",
+        about_p2: "Specializiram se za full-stack razvoj, od frontend oblikovanja do backend logike. Pri svojem delu dajem poudarek na čisto kodo, uporabniško izkušnjo in sodobne tehnologije.",
+        about_p3: "Trenutno aktivno iščem priložnosti za nadaljnji razvoj v dinamičnem IT okolju, kjer lahko prispevam k inovativnim projektom.",
+        stat_years: "Leta izkušenj",
+        stat_projects: "Projektov",
+        stat_companies: "Podjetij",
+        stat_passion: "Strast do učenja",
+        exp_label: "Kariera",
+        exp_title: "Delovne izkušnje",
+        job0_role: "Web Developer & Designer",
+        job0_1: "Razvoj in vzpostavitev spletne trgovine za prodajo industrijske opreme",
+        job0_2: "Oblikovanje in razvoj spletne strani allflex.si z modernim dizajnom",
+        job0_3: "UX/UI optimizacija in mobilna prilagodljivost",
+        job0_4: "SEO optimizacija in digitalna strategija",
+        job1_role: "IT Support & Developer",
+        job1_company: "Ministrstvo za digitalno preobrazbo",
+        job1_1: "Razvoj in vzdrževanje portala SPOT",
+        job1_2: "Sodelovanje pri prenovi uporabniškega vmesnika",
+        job1_3: "Testiranje AI asistenta za portal eUprava",
+        job1_4: "Analiza in optimizacija e-postopkov",
+        job2_role: "Administrative IT Support",
+        job2_company: "Pošta Slovenije",
+        job2_1: "Administrativna opravila in podpora",
+        job2_2: "Reševanje tehničnih težav",
+        job3_role: "Warehouse IT Administrator",
+        job3_company: "Geberit",
+        job3_1: "Vodenje evidence zalog in informacijski sistem",
+        job3_2: "Optimizacija skladiščnih procesov",
+        job3_3: "Sodelovanje pri digitalizaciji inventure",
+        skills_label: "Expertiza",
+        skills_title: "Tehnične veščine",
+        cat_prog: "Programski jeziki",
+        cat_web: "Web Tehnologije",
+        cat_db: "Podatkovne baze",
+        cat_tools: "Orodja & DevOps",
+        proj_label: "Portfolio",
+        proj_title: "Izbrani projekti",
+        proj0_title: "Allflex.si E-commerce",
+        proj0_desc: "Celovita spletna trgovina za industrijsko opremo z modernim dizajnom, optimizirano za mobilne naprave in SEO.",
+        proj1_title: "Parking Simulation C++",
+        proj1_desc: "Simulacija parkirišča z uporabo objektnega programiranja in naprednih podatkovnih struktur.",
+        proj2_title: "Watch E-commerce",
+        proj2_desc: "Spletna trgovina za ročne ure z emphasisom na UX dizajn in konverzijo.",
+        contact_label: "Kontakt",
+        contact_title: "Stopite v stik",
+        contact_subtitle: "Odprt sem za nove priložnosti in sodelovanja.",
+        contact_phone: "Telefon",
+        contact_loc: "Lokacija",
+        footer_rights: "Vse pravice pridržane."
+      },
+      en: {
+        nav_about: "About",
+        nav_exp: "Experience",
+        nav_skills: "Skills",
+        nav_projects: "Projects",
+        nav_contact: "Contact",
+        hero_badge: "Open for opportunities",
+        hero_title: "Aljaž Gornik",
+        hero_subtitle: "Computer Scientist • Web Developer • Tech Support",
+        btn_contact: "Get in touch",
+        btn_work: "View projects",
+        about_label: "About",
+        about_title: "Technology that solves problems",
+        about_subtitle: "Combining technical knowledge with a creative approach to develop digital solutions.",
+        about_p1: "I am a motivated computer science student passionate about developing web applications and information systems. My journey is marked by continuous learning and practical experience in various projects.",
+        about_p2: "I specialize in full-stack development, from frontend design to backend logic. I emphasize clean code, user experience, and modern technologies in my work.",
+        about_p3: "I am currently actively seeking opportunities for further development in a dynamic IT environment where I can contribute to innovative projects.",
+        stat_years: "Years experience",
+        stat_projects: "Projects",
+        stat_companies: "Companies",
+        stat_passion: "Passion for learning",
+        exp_label: "Career",
+        exp_title: "Work Experience",
+        job0_role: "Web Developer & Designer",
+        job0_1: "Development and establishment of online store for industrial equipment sales",
+        job0_2: "Design and development of allflex.si website with modern design",
+        job0_3: "UX/UI optimization and mobile responsiveness",
+        job0_4: "SEO optimization and digital strategy",
+        job1_role: "IT Support & Developer",
+        job1_company: "Ministry of Digital Transformation",
+        job1_1: "Development and maintenance of SPOT portal",
+        job1_2: "Participation in UI redesign",
+        job1_3: "Testing AI assistant for eUprava portal",
+        job1_4: "Analysis and optimization of e-procedures",
+        job2_role: "Administrative IT Support",
+        job2_company: "Post of Slovenia",
+        job2_1: "Administrative tasks and support",
+        job2_2: "Technical problem solving",
+        job3_role: "Warehouse IT Administrator",
+        job3_company: "Geberit",
+        job3_1: "Inventory records and information system management",
+        job3_2: "Warehouse process optimization",
+        job3_3: "Participation in inventory digitalization",
+        skills_label: "Expertise",
+        skills_title: "Technical Skills",
+        cat_prog: "Programming Languages",
+        cat_web: "Web Technologies",
+        cat_db: "Databases",
+        cat_tools: "Tools & DevOps",
+        proj_label: "Portfolio",
+        proj_title: "Selected Projects",
+        proj0_title: "Allflex.si E-commerce",
+        proj0_desc: "Complete e-commerce for industrial equipment with modern design, optimized for mobile devices and SEO.",
+        proj1_title: "Parking Simulation C++",
+        proj1_desc: "Parking lot simulation using object-oriented programming and advanced data structures.",
+        proj2_title: "Watch E-commerce",
+        proj2_desc: "Online watch store with emphasis on UX design and conversion.",
+        contact_label: "Contact",
+        contact_title: "Get in touch",
+        contact_subtitle: "Open for new opportunities and collaborations.",
+        contact_phone: "Phone",
+        contact_loc: "Location",
+        footer_rights: "All rights reserved."
+      },
+      de: {
+        nav_about: "Über mich",
+        nav_exp: "Erfahrung",
+        nav_skills: "Fähigkeiten",
+        nav_projects: "Projekte",
+        nav_contact: "Kontakt",
+        hero_badge: "Offen für Möglichkeiten",
+        hero_title: "Aljaž Gornik",
+        hero_subtitle: "Informatiker • Web Entwickler • Tech Support",
+        btn_contact: "Kontakt aufnehmen",
+        btn_work: "Projekte ansehen",
+        about_label: "Über mich",
+        about_title: "Technologie, die Probleme löst",
+        about_subtitle: "Verbindung technischen Wissens mit einem kreativen Ansatz zur Entwicklung digitaler Lösungen.",
+        about_p1: "Ich bin ein motivierter Informatikstudent mit Leidenschaft für die Entwicklung von Webanwendungen und Informationssystemen. Mein Weg ist geprägt von kontinuierlichem Lernen und praktischer Erfahrung in verschiedenen Projekten.",
+        about_p2: "Ich spezialisiere mich auf Full-Stack-Entwicklung, von Frontend-Design bis Backend-Logik. Ich lege Wert auf sauberen Code, Benutzererfahrung und moderne Technologien.",
+        about_p3: "Ich suche derzeit aktiv nach Möglichkeiten für weitere Entwicklung in einer dynamischen IT-Umgebung, in der ich zu innovativen Projekten beitragen kann.",
+        stat_years: "Jahre Erfahrung",
+        stat_projects: "Projekte",
+        stat_companies: "Unternehmen",
+        stat_passion: "Leidenschaft fürs Lernen",
+        exp_label: "Karriere",
+        exp_title: "Berufserfahrung",
+        job0_role: "Web Entwickler & Designer",
+        job0_1: "Entwicklung und Einrichtung eines Online-Shops für Industrieausrüstung",
+        job0_2: "Gestaltung und Entwicklung der Website allflex.si mit modernem Design",
+        job0_3: "UX/UI-Optimierung und mobile Anpassung",
+        job0_4: "SEO-Optimierung und digitale Strategie",
+        job1_role: "IT Support & Entwickler",
+        job1_company: "Ministerium für digitale Transformation",
+        job1_1: "Entwicklung und Wartung des SPOT-Portals",
+        job1_2: "Mitwirkung an der UI-Neugestaltung",
+        job1_3: "Testen des KI-Assistenten für das eUprava-Portal",
+        job1_4: "Analyse und Optimierung von E-Verfahren",
+        job2_role: "Administrativer IT-Support",
+        job2_company: "Slowenische Post",
+        job2_1: "Verwaltungsaufgaben und Support",
+        job2_2: "Technische Problemlösung",
+        job3_role: "Lagerverwalter IT",
+        job3_company: "Geberit",
+        job3_1: "Bestandsführung und Informationssystem-Management",
+        job3_2: "Optimierung von Lagerprozessen",
+        job3_3: "Mitwirkung bei der Inventardigitalisierung",
+        skills_label: "Expertise",
+        skills_title: "Technische Fähigkeiten",
+        cat_prog: "Programmiersprachen",
+        cat_web: "Web-Technologien",
+        cat_db: "Datenbanken",
+        cat_tools: "Tools & DevOps",
+        proj_label: "Portfolio",
+        proj_title: "Ausgewählte Projekte",
+        proj0_title: "Allflex.si E-commerce",
+        proj0_desc: "Kompletter E-Commerce für Industrieausrüstung mit modernem Design, optimiert für mobile Geräte und SEO.",
+        proj1_title: "Parkplatzsimulation C++",
+        proj1_desc: "Parkplatzsimulation mit objektorientierter Programmierung und fortgeschrittenen Datenstrukturen.",
+        proj2_title: "Uhren E-commerce",
+        proj2_desc: "Online-Uhrenshop mit Schwerpunkt auf UX-Design und Konversion.",
+        contact_label: "Kontakt",
+        contact_title: "Kontakt aufnehmen",
+        contact_subtitle: "Offen für neue Möglichkeiten und Zusammenarbeit.",
+        contact_phone: "Telefon",
+        contact_loc: "Standort",
+        footer_rights: "Alle Rechte vorbehalten."
+      }
+    };
 
-  <script src="script.js"></script>
+    // Language switching
+    function changeLanguage(lang) {
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+
+      document.querySelectorAll('[data-translate]').forEach(el => {
+        const key = el.dataset.translate;
+        if (translations[lang] && translations[lang][key]) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+
+      localStorage.setItem('lang', lang);
+    }
+
+    // Initialize language
+    const savedLang = localStorage.getItem('lang') || 'sl';
+    changeLanguage(savedLang);
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => changeLanguage(btn.dataset.lang));
+    });
+
+    // Scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          
+          // Animate skill bars
+          if (entry.target.classList.contains('skill-category')) {
+            entry.target.querySelectorAll('.skill-progress').forEach(bar => {
+              setTimeout(() => {
+                bar.style.width = bar.dataset.width + '%';
+              }, 200);
+            });
+          }
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal, .timeline-item').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Smooth scroll for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
